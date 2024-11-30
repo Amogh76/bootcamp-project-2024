@@ -1,0 +1,69 @@
+.pageContainer {
+    margin-top: 0; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pageTitle {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .inputField, .textareaField {
+    width: 90%; 
+    min-width: 600px; 
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .submitButton {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+  }
+  
+  .submitButton:hover {
+    background-color: #45a049; 
+  
+  }
+ 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cg-black);
+  color: var(--cg-white);
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid var(--cg-white);
+}
+  
