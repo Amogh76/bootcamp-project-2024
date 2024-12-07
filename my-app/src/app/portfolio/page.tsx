@@ -1,7 +1,20 @@
 import React from "react";
 import Navbar from "../Components/navbar";
 import style from "./portfolio.module.css";
-import { portfolio } from "../portfolioData"; // Adjust the path as needed
+import connectDB from "@/app/database/db";
+import Project from "@/app/database/portfolioSchema";
+import { portfolio } from "../portfolioData"; 
+
+async function getProjects() {
+  await connectDB();
+  try {
+    const projects = await Project.find().sort({ date: -1 }).orFail();
+    return projects;
+  } catch (err) {
+    console.error("Error fetching projects:", err);
+    return [];
+  }
+}
 
 const Portfolio: React.FC = () => {
   return (

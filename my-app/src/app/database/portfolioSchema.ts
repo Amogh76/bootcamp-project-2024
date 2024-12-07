@@ -1,25 +1,36 @@
 import mongoose, { Schema } from "mongoose";
 
-// TypeScript type (can also be an interface)
-type Portfolio = {
-  name: string; // Project name
-  description: string; // Short description for preview
-  image: string; // URL or path to the image in public
-  image_alt: string; // Alt text for the image
-  link: string; // URL to learn more about the project
+type Project = {
+  title: string;
+  slug: string;
+  date: Date;
+  description: string;
+  content: string;
+  image: string;
+  image_alt: string;
+  tags?: string[];
+  links?: {
+    github?: string;
+    liveDemo?: string;
+  };
 };
 
-// Mongoose schema
-const portfolioSchema = new Schema<Portfolio>({
-  name: { type: String, required: true },
+const projectSchema = new Schema<Project>({
+  title: { type: String, required: true },
+  slug: { type: String, required: true },
+  date: { type: Date, default: new Date() },
   description: { type: String, required: true },
+  content: { type: String, required: true },
   image: { type: String, required: true },
   image_alt: { type: String, required: true },
-  link: { type: String, required: true },
+  tags: { type: [String], default: [] }, 
+  links: {
+    github: { type: String, default: null },
+    liveDemo: { type: String, default: null },
+  },
 });
 
-// Defining the collection and model
-const Portfolio =
-  mongoose.models["portfolio"] || mongoose.model("portfolio", portfolioSchema);
+const Project =
+  mongoose.models["projects"] || mongoose.model("projects", projectSchema);
 
-export default Portfolio;
+export default Project;

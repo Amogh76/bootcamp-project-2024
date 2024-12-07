@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./resume.module.css"; // Import the CSS Module
+import styles from "./resume.module.css"; 
 
 const Resume: React.FC = () => {
   return (

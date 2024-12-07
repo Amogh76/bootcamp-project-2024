@@ -30,7 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # env files (can opt-in for commiting if needed)
-.env*
+.env
+MONGO_URI = mongodb+srv://AmoghArora06:<Amogh@2010>@clusterh4i.oexao.mongodb.net/?retryWrites=true&w=majority&appName=ClusterH4I
 
 # vercel
 .vercel
@@ -39,4 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-MONGO_URI = mongodb+srv://AmoghArora06:<Amogh@2010>@clusterh4i.oexao.mongodb.net/?retryWrites=true&w=majority&appName=ClusterH4I
