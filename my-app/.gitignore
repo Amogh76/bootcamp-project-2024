@@ -38,3 +38,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+MONGO_URI = mongodb+srv://AmoghArora06:<Amogh@2010>@clusterh4i.oexao.mongodb.net/?retryWrites=true&w=majority&appName=ClusterH4I
