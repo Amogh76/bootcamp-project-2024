@@ -1,43 +1,85 @@
-import React from 'react';
-import styles from './contact.module.css';
+"use client";
 
-const ContactPage: React.FC = () => {
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
+import styles from "./contact.module.css";
+
+export default function About() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formData,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
+      );
+      setStatus("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setStatus("Failed to send the message. Please try again later.");
+    }
+  };
+
   return (
-    <main className={styles.pageContainer}>
-      <h1 className={styles.pageTitle}>Contact</h1>
-      <form className={styles.contactForm}>
-        <label className={styles.label} htmlFor="name">Name:</label>
+    <div className={styles.pageContainer}>
+      <h2 className={styles.pageTitle}>Contact Me</h2>
+      {status && <p className={styles.statusMessage}>{status}</p>}
+      <form className={styles.contactForm} onSubmit={handleSubmit}>
+        <label className={styles.label} htmlFor="name">
+          Name:
+        </label>
         <input
           className={styles.inputField}
           type="text"
-          id="name"
           name="name"
-          placeholder="ex: LeBron James"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleInputChange}
+          required
         />
-        
-        <label className={styles.label} htmlFor="email">Email:</label>
+        <label className={styles.label} htmlFor="email">
+          Email:
+        </label>
         <input
           className={styles.inputField}
           type="email"
-          id="email"
           name="email"
-          placeholder="ex: NoRealRings@example.com"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
         />
-        
-        <label className={styles.label} htmlFor="message">Message:</label>
+        <label className={styles.label} htmlFor="message">
+          Message:
+        </label>
         <textarea
           className={styles.textareaField}
-          id="message"
           name="message"
-          rows={4}
-          placeholder="Drop your message here"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleInputChange}
+          required
         />
-        
-        <input className={styles.submitButton} type="submit" value="Submit" />
+        <button className={styles.submitButton} type="submit">
+          Send Message
+        </button>
       </form>
-      <footer className={styles.footer}>© 2024 Amogh's Great Website | All Rights Reserved</footer>
-    </main>
+    </div>
   );
-};
-
-export default ContactPage;
+}
