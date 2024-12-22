@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./resume.module.css"; 
+import styles from "./resume.module.css";
 
 const Resume: React.FC = () => {
   return (
     <main className={styles.resume}>
-      <h1 className={styles.page_title}>Amogh's Resume</h1>
+      <h1 className={styles.page_title}>Amogh&apos;s Resume</h1>
       <a href="/Resume.pdf" className={styles.download_button} download>
         Download Resume
       </a>
@@ -139,7 +139,7 @@ const Resume: React.FC = () => {
         </section>
       </div>
 
-      <footer className={styles.footer}>© 2024 Amogh's Great Website | All Rights Reserved</footer>
+      <footer className={styles.footer}>© 2024 Amogh&apos;s Great Website | All Rights Reserved</footer>
     </main>
   );
 };

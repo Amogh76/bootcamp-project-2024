@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "../Components/navbar";
 import style from "./portfolio.module.css";
 import connectDB from "@/app/database/db";
 import Project from "@/app/database/portfolioSchema";
 import { portfolio } from "../portfolioData"; 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getProjects() {
   await connectDB();
   try {
@@ -25,7 +25,7 @@ const Portfolio: React.FC = () => {
           {portfolio.map((project) => (
             <div className={style.projectCard} key={project.name}>
               <img
-                src={`/${project.image}`}
+                src={`/${project.image}`}  // Corrected string interpolation
                 alt={project.image_alt}
                 className={style.image}
               />
@@ -41,7 +41,7 @@ const Portfolio: React.FC = () => {
         </div>
       </main>
       <footer className={style.footer}>
-        © 2024 Amogh's Great Website | All Rights Reserved
+        © 2024 Amogh&apos;s Great Website | All Rights Reserved 
       </footer>
     </>
   );

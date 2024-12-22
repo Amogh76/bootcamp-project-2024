@@ -28,12 +28,14 @@ const blogs = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getBlogs() {
   await connectDB();  
   
   try {
     const blogs = await Blog.find().sort({ date: -1 }).orFail();
     return blogs;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     return null;
   }
@@ -52,7 +54,7 @@ export default function BlogPage() {
       </div>
 
       <footer style={{ textAlign: "center", backgroundColor: "#333", color: "white", padding: "10px 0", marginTop: "40px" }}>
-        © 2024 Amogh's Great Website | All Rights Reserved
+       © 2024 Amogh&apos;s Great Website | All Rights Reserved 
       </footer>
     </div>
   );

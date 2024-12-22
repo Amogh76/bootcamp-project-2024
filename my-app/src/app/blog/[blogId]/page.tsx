@@ -21,7 +21,7 @@ export default function BlogPage({ params }: BlogPageProps) {
       <p>{blog.text}</p>
 
       <footer className={style.footer}>
-        © 2024 Amogh's Great Website | All Rights Reserved
+        © 2024 Amogh&apos;s Great Website | All Rights Reserved 
       </footer>
     </div>
   );

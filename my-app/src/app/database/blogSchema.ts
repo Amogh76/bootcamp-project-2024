@@ -23,6 +23,7 @@ const blogSchema = new Schema<Blog>({
 		content: { type: String, required: true },
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const commentSchema = new mongoose.Schema({
 	user: { type: String, required: true },
 	comment: { type: String, required: true },

@@ -19,7 +19,9 @@ export default function Home() {
       <div className={styles.imageContainer}>
         <img className={styles.image} src="Me.jpg" alt="Picture of Amogh Arora" />
       </div>
-      <footer className={styles.footer}>© 2024 Amogh's Great Website | All Rights Reserved</footer>
+      <footer className={styles.footer}>
+        © 2024 Amogh&apos;s Great Website | All Rights Reserved  
+      </footer>
     </main>
   );
 }
