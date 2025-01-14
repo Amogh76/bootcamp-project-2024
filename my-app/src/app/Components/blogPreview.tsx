@@ -1,29 +1,30 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Blog } from "../blogData";
-import style from "./blogPreview.module.css";
+import styles from "./blogPreview.module.css";
+
+export interface Blog {
+  title: string;
+  date: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+}
 
 export default function BlogPreview({
-  name,
+  title,
   description,
   image,
-  image_alt,
+  imageAlt,
+  slug,
 }: Blog) {
-  const slug = name.toLowerCase().replace(/\s+/g, "-");
-
   return (
-    <div>
-      <div className={style.blogContainer}>
-        <h3>{name}</h3>
-        <div className={style.blogContent}>
-          <Image src={image} alt={image_alt} width={500} height={300} />
-          <p>{description}</p>
-        </div>
-        <Link href={`/blog/${slug}`}>
-          <button className={style.blogButton}>Read More</button>
-        </Link>
-      </div>
+    <div className={styles.blogPreview}>
+      <h3>{title}</h3>
+      <Image src={image} alt={imageAlt} width={500} height={300} />
+      <p>{description}</p>
+      <Link href={`/blogs/${slug}`}>Read More</Link> 
     </div>
   );
 }

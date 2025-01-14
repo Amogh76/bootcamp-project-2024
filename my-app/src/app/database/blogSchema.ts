@@ -1,36 +1,40 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
-type Blog = {
-		name: string;
-	  slug: string; 
-		date: Date;
-		description: string; 
-	  content: string; 
-	  image: string; 
-	  image_alt: string; 
-		
+type Comment = {
+  user: string;
+  comment: string;
+  time: Date;
 };
 
+export interface Blog extends Document {
+  title: string;
+  slug: string;
+  date: Date;
+  description: string;
+  content: string;
+  image: string;
+  image_alt: string;
+  comments: Comment[];
+}
 
-// mongoose schema 
+const commentSchema = new Schema<Comment>({
+  user: { type: String, required: true },
+  comment: { type: String, required: true },
+  time: { type: Date, default: Date.now },
+});
+
 const blogSchema = new Schema<Blog>({
-		name: { type: String, required: true },
-		slug: { type: String, required: true },
-		date: { type: Date, required: false, default: new Date()},
-		description: { type: String, required: true },
-		image: { type: String, required: true },
-	  image_alt: { type: String, required: true },
-		content: { type: String, required: true },
-})
+  title: { type: String, required: true },
+  slug: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+  description: { type: String, required: true },
+  content: { type: String, required: true },
+  image: { type: String, required: true },
+  image_alt: { type: String, required: true },
+  comments: [commentSchema],
+});
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const commentSchema = new mongoose.Schema({
-	user: { type: String, required: true },
-	comment: { type: String, required: true },
-	time: { type: Date, default: Date.now },
-  });
-  
-const Blog = mongoose.models['blogs'] ||
-    mongoose.model('blogs', blogSchema);
+const BlogModel: Model<Blog> =
+  mongoose.models["blogs"] || mongoose.model<Blog>("blogs", blogSchema);
 
-export default Blog;
+export default BlogModel;

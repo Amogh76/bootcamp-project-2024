@@ -1,22 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '../../../database/db';
-import blogSchema from '../../../database/blogSchema';
+import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@/app/database/db";
+import blogSchema from "@/app/database/blogSchema";
 
-type RouteContext = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function GET(req: NextRequest, context: RouteContext) {
+export async function GET(req: NextRequest) {
   await connectDB();
 
+  const slug = req.url.split('/').slice(-1)[0]
+
+  if (!slug) {
+    return NextResponse.json({ error: "Slug parameter is missing." }, { status: 400 });
+  }
+
   try {
-
-    const { slug } = await context.params; 
-
     const blog = await blogSchema.findOne({ slug }).orFail();
-    return NextResponse.json(blog); 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return NextResponse.json(blog);
   } catch (err) {
-    return NextResponse.json('Blog not found.', { status: 404 });
+    console.error("Error fetching blog:", err);
+    return NextResponse.json({ error: "Blog not found." }, { status: 404 });
   }
 }
