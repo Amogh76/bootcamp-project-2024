@@ -1,10 +1,10 @@
 import React from "react";
-import style from "./portfolio.module.css";
+import Link from "next/link";
+import Image from "next/image";
 import connectDB from "@/app/database/db";
-import Project from "@/app/database/portfolioSchema";
-import { portfolio } from "../portfolioData"; 
+import Project from "@/app/database/projectSchema";
+import "./portfolio.module.css";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getProjects() {
   await connectDB();
   try {
@@ -16,35 +16,48 @@ async function getProjects() {
   }
 }
 
-const Portfolio: React.FC = () => {
-  return (
-    <>
-      <main className={style.portfolioContainer}>
-        <h1 className={style.title}>Portfolio</h1>
-        <div className={style.projects}>
-          {portfolio.map((project) => (
-            <div className={style.projectCard} key={project.name}>
-              <img
-                src={`/${project.image}`}  // Corrected string interpolation
-                alt={project.image_alt}
-                className={style.image}
-              />
-              <div className={style.details}>
-                <p className={style.name}>{project.name}</p>
-                <p className={style.description}>{project.description}</p>
-                <a href={project.link} className={style.link}>
-                  Learn More
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-      <footer className={style.footer}>
-        © 2024 Amogh&apos;s Great Website | All Rights Reserved 
-      </footer>
-    </>
-  );
-};
+export default async function ProjectsPage() {
+  const projects = await getProjects();
 
-export default Portfolio;
+  return (
+    <div className="projects-container">
+      <h1>My Portfolio</h1>
+
+      <div className="project-list">
+        {projects.length > 0 ? (
+          projects.map((project) => (
+            <div className="project-item" key={project.slug}>
+              <h2>{project.title}</h2>
+              <p>{project.description}</p>
+              <Link href={`/portfolio/${project.slug}`}>
+                <div className="project-image-container">
+                  <Image
+                    src={project.image}
+                    alt={project.image_alt || "Project image"}
+                    width={800}
+                    height={500}
+                    className="project-image"
+                    priority
+                  />
+                </div>
+              </Link>
+              <p>
+                {project.links?.github && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                )}
+              </p>
+            </div>
+          ))
+        ) : (
+          <p className="no-projects-message">No projects found.</p>
+        )}
+      </div>
+    </div>
+  );
+}

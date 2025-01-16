@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/app/database/db";
-import projectSchema from "@/app/database/portfolioSchema";
+import projectSchema from "@/app/database/projectSchema";
 
 export async function POST(req: NextRequest) {
   await connectDB();

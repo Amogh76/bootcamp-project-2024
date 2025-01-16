@@ -1,23 +1,21 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/app/database/db";
-import Project from "@/app/database/portfolioSchema";
+import projectSchema from "@/app/database/projectSchema";
 
-type IParams = {
-  params: {
-    slug: string;
-  };
-};
-
-export async function GET(req: Request, { params }: IParams) {
+export async function GET(req: NextRequest) {
   await connectDB();
 
-  const { slug } = params;
+  const slug = req.url.split('/').slice(-1)[0]
+
+  if (!slug) {
+    return NextResponse.json({ error: "Slug parameter is missing." }, { status: 400 });
+  }
 
   try {
-    const project = await Project.findOne({ slug }).orFail();
+    const project = await projectSchema.findOne({ slug }).orFail();
     return NextResponse.json(project);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
-    return NextResponse.json("Project not found.", { status: 404 });
+    console.error("Error fetching project:", err);
+    return NextResponse.json({ error: "Project not found." }, { status: 404 });
   }
 }

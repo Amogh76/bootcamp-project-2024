@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import CommentsSection from "@/app/Components/CommentsSection";
-import "./Blog.css";
+import "./blogs.css";
 
 type Props = {
   params: Promise<{ slug: string }>;
