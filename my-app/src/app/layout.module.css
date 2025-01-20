@@ -29,3 +29,16 @@
 .background > * {
   position: relative; 
 }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; 
+  color: #ffffff; 
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #ffffff; 
+}

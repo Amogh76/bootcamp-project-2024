@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import connectDB from "@/app/database/db";
 import Project from "@/app/database/projectSchema";
-import "./portfolio.module.css";
+import styles from "./portfolio.module.css";
 
 async function getProjects() {
   await connectDB();
@@ -20,23 +20,23 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div className="projects-container">
-      <h1>My Portfolio</h1>
+    <div className={styles.projectsContainer}>
+      <h1 className={styles.title}>My Portfolio</h1>
 
-      <div className="project-list">
+      <div className={styles.projectList}>
         {projects.length > 0 ? (
           projects.map((project) => (
-            <div className="project-item" key={project.slug}>
+            <div className={styles.projectItem} key={project.slug}>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
               <Link href={`/portfolio/${project.slug}`}>
-                <div className="project-image-container">
+                <div className={styles.projectImageContainer}>
                   <Image
                     src={project.image}
                     alt={project.image_alt || "Project image"}
                     width={800}
                     height={500}
-                    className="project-image"
+                    className={styles.projectImage}
                     priority
                   />
                 </div>
@@ -55,7 +55,7 @@ export default async function ProjectsPage() {
             </div>
           ))
         ) : (
-          <p className="no-projects-message">No projects found.</p>
+          <p className={styles.noProjectsMessage}>No projects found.</p>
         )}
       </div>
     </div>

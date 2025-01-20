@@ -139,7 +139,7 @@ const Resume: React.FC = () => {
         </section>
       </div>
 
-      <footer className={styles.footer}>© 2024 Amogh&apos;s Great Website | All Rights Reserved</footer>
+
     </main>
   );
 };

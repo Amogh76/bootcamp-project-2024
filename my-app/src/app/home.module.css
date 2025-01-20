@@ -10,20 +10,20 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: var(--cg-white);
+  color: #ffffff; /* White text */
 }
 
 .heading {
   font-size: 36px;
   margin-bottom: 20px;
-  color: var(--cg-white);
+  color: #ffffff; /* White text */
 }
 
 .paragraph {
   font-size: 18px;
   line-height: 1.8;
   margin-bottom: 20px;
-  color: var(--cg-white);
+  color: #ffffff; /* White text */
 }
 
 .imageContainer {
@@ -37,17 +37,4 @@
   height: auto;
   border-radius: 50%;
   margin: 20px auto;
-}
-
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--cg-black);
-  color: var(--cg-white);
-  padding: 10px;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 40px;
-  border-top: 1px solid var(--cg-white);
 }

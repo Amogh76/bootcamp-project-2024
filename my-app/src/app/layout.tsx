@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "./Components/navbar" 
-import styles from "./layout.module.css"
-
+import Navbar from "./Components/navbar";
+import styles from "./layout.module.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,11 +31,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className={styles.background}>
-        <Navbar/>  
-        {children}
+          <Navbar />
+          <main>{children}</main>
+          <footer className={styles.footer}>
+            © 2024 Amogh&apos;s Great Website | All Rights Reserved
+          </footer>
         </div>
       </body>
     </html>
   );
 }
-

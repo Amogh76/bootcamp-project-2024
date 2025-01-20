@@ -1,98 +1,67 @@
-.portfolioContainer {
+.projectsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: white;
-    padding: 20px;
-}
-
-.title {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.projects {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .title {
+    font-size: 3rem; /* Made larger */
+    margin-bottom: 30px;
+    color: #ffffff; /* White text for "My Portfolio" */
+  }
+  
+  .projectList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-}
-
-.projectCard {
-    width: 400px;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.cardLink {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.projectCard:hover {
-    transform: scale(1.05);
-}
-
-.image {
+    gap: 30px; /* Increased spacing between items */
     width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.details {
-    padding: 15px;
+  }
+  
+  .projectItem {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+    padding: 25px; /* Increased padding */
+    width: 350px; /* Larger width */
     text-align: center;
-}
-
-.name {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.description {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 10px;
-}
-
-.link {
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    border: 2px solid transparent;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    background-color: transparent;
-}
-
-.link:hover {
-    background-color: #1e3a8a;
-    color: white;
-    border-color: #1e3a8a;
-    transform: scale(1.1);
-    box-shadow: 0px 4px 10px rgba(30, 144, 255, 0.5);
-}
-
-.link:focus {
-    outline: none;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--cg-black);
-    color: var(--cg-white);
-    padding: 10px;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 40px;
-    border-top: 1px solid var(--cg-white);
-}
+    transition: transform 0.2s ease-in-out;
+    color: #000; /* Changed description text to black */
+  }
+  
+  .projectItem:hover {
+    transform: translateY(-8px); /* Increased hover effect */
+  }
+  
+  .projectImageContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .projectImage {
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .projectImageContainer:hover .projectImage {
+    transform: translateY(-10px);
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .noProjectsMessage {
+    font-size: 1.4rem; /* Larger text */
+    color: #888;
+  }
+  
